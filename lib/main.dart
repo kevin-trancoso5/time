@@ -7,7 +7,6 @@ import 'blocs/search/search_bloc.dart';
 import 'providers/api.dart';
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized(); // Required by FlutterConfig
   Bloc.observer = SimpleBlocDelegate();
   runApp(MyApp());
 }
@@ -37,7 +36,8 @@ class MyApp extends StatelessWidget {
       child: MultiBlocProvider(
         providers: [
           BlocProvider<SearchBloc>(
-            create: (context) => SearchBloc(),
+            create: (context) =>
+                SearchBloc(api: RepositoryProvider.of<Api>(context)),
           )
         ],
         child: Home(),

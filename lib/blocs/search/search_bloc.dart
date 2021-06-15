@@ -1,15 +1,17 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+
+import '../../providers/api.dart';
 
 part 'search_event.dart';
 part 'search_state.dart';
 
 class SearchBloc extends Bloc<SearchEvent, SearchState> {
-  SearchBloc() : super(SearchUninitialized());
+  final Api api;
+  SearchBloc({required this.api}) : super(SearchUninitialized());
 
   @override
   Stream<SearchState> mapEventToState(SearchEvent event) async* {
